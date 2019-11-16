@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header/Header'
+import History from './components/history/HistoryMain'
 
 class App extends Component {
   state = {
@@ -26,6 +27,7 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <History />
       </div>
     );
   }

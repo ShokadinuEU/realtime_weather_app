@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     order: '3',
     backgroundColor: '#1a1a1a',
     color: '#fff',
+    marginBottom: '1.5em',
     '& p': {
       backgroundColor: '#1a1a1a',
       paddingBottom: '0.1em'
