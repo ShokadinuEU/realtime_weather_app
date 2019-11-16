@@ -40,7 +40,7 @@ export default function HistoryByDay() {
 
   useEffect(() => {
     fetch(
-      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric
+      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric&dt=24&cnt=40
       `,
       {
         method: "GET",
@@ -52,31 +52,69 @@ export default function HistoryByDay() {
       .then(res => res.json())
       .then(response => {
         setFiveDays({
-          descriptions: response.list.map(day => day.weather[0].description),
-          icons: response.list.map(day => day.weather[0].icon),
-          temperature: response.list.map(day => day.main.temp),
-          currentDate: response.list.map(day => day.dt_txt),
+          data: response.list.map(day => {
+            let descriptions = day.weather[0].description
+            let icons = day.weather[0].icon
+            let temperatures = day.main.temp
+            let dates = day.dt_txt
+            return [ dates, temperatures, descriptions, icons ]
+          })
         })
+        console.log(response)
       })
       .catch(error => console.log(error));
   }, []);
-  const dateToday = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate()
-  const currentDates = fiveDays.currentDate
   var day;
-  console.log(currentDates)
+  switch (new Date().getDay()) {
+    case 0:
+      day = "Monday";
+      break;
+    case 1:
+      day = "Tuesday";
+      break;
+    case 2:
+      day = "Wednesday";
+      break;
+    case 3:
+      day = "Thursday";
+      break;
+    case 4:
+      day = "Friday";
+      break;
+    case 5:
+      day = "Saturday";
+      break;
+    case  6:
+      day = "Sunday";
+      break;
+    default: return 0  
+  }
+  // var dateToday = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate()
+  // var currentDates = fiveDays.currentDates
+  // var currentTemps = fiveDays.temperatures
+  // var descriptions = fiveDays.descriptions
+  // var icons = fiveDays.icons
+  console.log(fiveDays.data)
 
   return (
     <div className={classes.mainDailyReport}>
-        <div className={classes.DailyReportDay}>
-          <span>Mon</span>
-        </div>
-        <div className={classes.DailyReportTemperature}>
-          <span>17&#176;</span>
-        </div>
-        <div className={classes.DailyReportContition}>
-          <span>pict</span>
-          <span>Weather Desc</span>
-        </div>
+      {/* {
+        currentTemps.map((t, i) => (
+          <div key={i} className={classes.DailyReportTemperature}>
+            <span>{t[i]}&#176;</span>
+          </div>
+        ))
+      } */}
+      <div className={classes.DailyReportDay}>
+        <span>{day.substring(0, 3).toUpperCase()}</span>
+      </div>
+      <div className={classes.DailyReportTemperature}>
+        <span>14&#176;</span>
+      </div>
+      <div className={classes.DailyReportContition}>
+        <span>pict</span>
+        <span>Weather Desc</span>
+      </div>
     </div>
   )
 }
