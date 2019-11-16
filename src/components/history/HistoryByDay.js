@@ -40,7 +40,7 @@ export default function HistoryByDay() {
 
   useEffect(() => {
     fetch(
-      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric&dt=24&cnt=40
+      `http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric&hours=120&cnt=40
       `,
       {
         method: "GET",
@@ -51,16 +51,22 @@ export default function HistoryByDay() {
     )
       .then(res => res.json())
       .then(response => {
-        setFiveDays({
-          data: response.list.map(day => {
-            let descriptions = day.weather[0].description
-            let icons = day.weather[0].icon
-            let temperatures = day.main.temp
-            let dates = day.dt_txt
-            return [ dates, temperatures, descriptions, icons ]
-          })
+          var data = response.list.map(day => {
+          let descriptions = day.weather[0].description
+          let icons = day.weather[0].icon
+          let temperatures = day.main.temp
+          let dates = day.dt_txt
+          return [ dates, temperatures, descriptions, icons ]
         })
-        console.log(response)
+        setFiveDays({
+          data: { 
+            firstDay: data[0], 
+            secondDay: data[8], 
+            thirdDay: data[16], 
+            fourthDay: data[24], 
+            fifthDay: data[32] 
+          }
+        })
       })
       .catch(error => console.log(error));
   }, []);
@@ -89,22 +95,11 @@ export default function HistoryByDay() {
       break;
     default: return 0  
   }
-  // var dateToday = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate()
-  // var currentDates = fiveDays.currentDates
-  // var currentTemps = fiveDays.temperatures
-  // var descriptions = fiveDays.descriptions
-  // var icons = fiveDays.icons
+  
   console.log(fiveDays.data)
 
   return (
     <div className={classes.mainDailyReport}>
-      {/* {
-        currentTemps.map((t, i) => (
-          <div key={i} className={classes.DailyReportTemperature}>
-            <span>{t[i]}&#176;</span>
-          </div>
-        ))
-      } */}
       <div className={classes.DailyReportDay}>
         <span>{day.substring(0, 3).toUpperCase()}</span>
       </div>
