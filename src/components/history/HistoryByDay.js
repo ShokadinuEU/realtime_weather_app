@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -30,8 +30,41 @@ const useStyles = makeStyles({
 
 });
 
+
 export default function HistoryByDay() {
+  const APIKEY = 'f322c16ca21d9c08b54608cf88c9971a'
+  const location = 'London,UK'
   const classes = useStyles();
+
+  const [fiveDays, setFiveDays] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric
+      `,
+      {
+        method: "GET",
+        headers: new Headers({
+          Accept: "application/json"
+        })
+      }
+    )
+      .then(res => res.json())
+      .then(response => {
+        setFiveDays({
+          descriptions: response.list.map(day => day.weather[0].description),
+          icons: response.list.map(day => day.weather[0].icon),
+          temperature: response.list.map(day => day.main.temp),
+          currentDate: response.list.map(day => day.dt_txt),
+        })
+      })
+      .catch(error => console.log(error));
+  }, []);
+  const dateToday = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate()
+  const currentDates = fiveDays.currentDate
+  var day;
+  console.log(currentDates)
+
   return (
     <div className={classes.mainDailyReport}>
         <div className={classes.DailyReportDay}>

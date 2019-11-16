@@ -15,10 +15,6 @@ export default function HistoryMain() {
     return (
       <div className={classes.historyMain}>
         <HistoryByDay />
-        <HistoryByDay />
-        <HistoryByDay />
-        <HistoryByDay />
-        <HistoryByDay />
       </div>
     )
 }

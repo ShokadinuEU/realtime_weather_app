@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 
 export default function Header() {
   const classes = useStyles();
+  //set the time to current
   var dt = new Date();
   var hours = dt.getHours() ;
   hours = (hours % 12) || 12;
