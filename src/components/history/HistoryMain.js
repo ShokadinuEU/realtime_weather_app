@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   mainDailyReport: {
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#363636',
     color: '#fff',
     display: 'flex',
   },

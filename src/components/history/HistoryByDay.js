@@ -3,20 +3,23 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   mainDailyReport: {
-    backgroundColor: '#b5b5b3',
+    backgroundColor: '#696969',
     color: '#fff',
     display: 'flex',
     justifyContent: 'space-between',
     margin: '4px',
     borderRadius: '2px',
+    padding: '0.7em 0'
   },
   DailyReportDay: {
     fontSize: '1.4em',
-    padding: '10px'
+    padding: '10px',
+    paddingLeft: '1em'
   },
   DailyReportTemperature: {
     fontSize: '1.5em',
-    padding: '10px'
+    padding: '10px',
+    paddingLeft: '0'
   },
   DailyReportContition: {
     display: 'flex',
@@ -35,7 +38,7 @@ export default function HistoryByDay() {
           <span>Mon</span>
         </div>
         <div className={classes.DailyReportTemperature}>
-          <span>12*</span>
+          <span>17&#176;</span>
         </div>
         <div className={classes.DailyReportContition}>
           <span>pict</span>

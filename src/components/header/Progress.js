@@ -18,24 +18,31 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '10px',
     order: '3',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#38373b',
     color: '#fff',
-    marginBottom: '1.5em',
+    marginBottom: '0.2em',
+    padding: '10px',
+    display: 'inline-table',
     '& p': {
-      backgroundColor: '#1a1a1a',
-      paddingBottom: '0.1em'
+      backgroundColor: '#363636',
+      paddingBottom: '0.8em',
+      paddingLeft: '1em',
+      fontSize: '0.5em',
     }
   },
   progressHeader: {
-    height: '10px',
-    backgroundColor: '#1a1a1a',
+    height: '15px',
+    backgroundColor: '#38373b',
     color: '#fff',
+    borderRadius: '7px',
+    width: '100%',
+    border: '1px solid black'
   }
 }));
 
 export default function LinearDeterminate() {
   const classes = useStyles();
-  const progressValue = 27
+  const progressValue = 57
   return (
     <div className={classes.rootHeader}>
       <p>Reloading in <span>{progressValue}</span>s</p>
