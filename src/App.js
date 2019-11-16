@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header/Header'
 import History from './components/history/HistoryMain'
+import Axios from 'axios';
 
 class App extends Component {
   state = {
@@ -10,10 +11,10 @@ class App extends Component {
 
   
   getWeather = async e => {
-    const API_KEY = "f322c16ca21d9c08b54608cf88c9971a";
     e.preventDefault();
+    const API_KEY = "f322c16ca21d9c08b54608cf88c9971a";
 
-    const apiCall = await fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=${API_KEY}`);
+    const apiCall = await Axios.get(`https://api.openweathermap.org/data/2.5/forecast?id=london&APPID=${API_KEY}`);
     const data = await apiCall.json();
     if(data) {
       this.setState({

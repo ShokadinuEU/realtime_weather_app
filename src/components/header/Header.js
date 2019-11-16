@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Progress from './Progress'
-import { borderRadius } from '@material-ui/system';
 
 const useStyles = makeStyles({
   mainTopHeader: {
@@ -33,6 +32,12 @@ const useStyles = makeStyles({
 
 export default function Header() {
   const classes = useStyles();
+  var dt = new Date();
+  var hours = dt.getHours() ;
+  hours = (hours % 12) || 12;
+  var minutes = dt.getMinutes() ;
+  var currentTime = hours + ":" + minutes;
+
   return (
     <div className={classes.mainHeader}>
       <div className={classes.mainTopHeader}>
@@ -41,7 +46,7 @@ export default function Header() {
         </div>
         <div className={classes.headerTime}>
           <span>*** </span>
-          <span>18:36 GTM</span>
+          <span>{currentTime} GTM</span>
           <span> ***</span>
         </div>
         <div className={classes.headerCurrentWeather}>
