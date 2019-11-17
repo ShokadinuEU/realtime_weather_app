@@ -1,5 +1,5 @@
 import React from 'react'
-import HistoryByDay from './HistoryByDay'
+import FiveDays from './FiveDays'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -10,11 +10,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HistoryMain() {
+export default function Index() {
   const classes = useStyles();
     return (
       <div className={classes.historyMain}>
-        <HistoryByDay />
+        <FiveDays />
       </div>
     )
 }
