@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     alignItems: 'flex-end'
   },
   DailyReportContitionDescription: {
-    fontSize: '0.9em',
+    fontSize: '0.8em',
     textTransform: 'uppercase',
     fontWeight: '100',
     fontFamily: 'monospace',
@@ -58,7 +58,7 @@ export default function FiveDays() {
       .catch(err => console.log(err))
   },[])
 
-  console.log(days)
+  // console.log(days)
 
     
 
@@ -79,7 +79,9 @@ export default function FiveDays() {
             </div>
             <div className={classes.DailyReportContition}>
               <span><img src={`http://openweathermap.org/img/w/${a.weather[0].icon}.png`} alt="img" /></span>
-              <span className={classes.DailyReportContitionDescription}>{a.weather[0].description}</span>
+              <span className={classes.DailyReportContitionDescription}>
+                {a.weather[0].description}
+              </span>
             </div>
           </div>
         ))

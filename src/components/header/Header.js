@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Progress from './Progress'
+import Axios from 'axios'
 
 const useStyles = makeStyles({
   mainTopHeader: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
     borderRadius: '4px'
   },
   headerCurrentWeather: {
-    fontSize: '1.1em'
+    fontSize: '1.5em'
   }
 });
   
@@ -39,6 +40,22 @@ export default function Header() {
   var minutes = dt.getMinutes() ;
   var currentTime = hours + ":" + minutes;
 
+  const APIKEY = '02e8d71b0387ff5174b1913ab68d9663'
+  const location = 'London,UK'
+  const connectionString = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${APIKEY}&units=metric&cnt=40`
+
+  const [today, setToday] = useState([])
+
+  useEffect(() => {
+    Axios.get(connectionString)
+      .then(res => {
+        setToday(res.data.main.temp)
+      })
+      .catch(err => console.log(err))
+  },[])
+
+  console.log(today)
+
   return (
     <div className={classes.mainHeader}>
       <div className={classes.mainTopHeader}>
@@ -51,7 +68,7 @@ export default function Header() {
           <span> ***</span>
         </div>
         <div className={classes.headerCurrentWeather}>
-          <span>12&#176;</span>
+            {Math.floor(today)}&#176;
         </div>
       </div>
       <Progress />
