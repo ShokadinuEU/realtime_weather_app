@@ -2,7 +2,7 @@
   "name": "weater-app-test",
   "version": "0.1.0",
   "private": true,
-  "home": "https://ShokadinuEU.github.io/realtime_weather_app",
+  "homepage": "https://ShokadinuEU.github.io/realtime_weather_app",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/styles": "^4.6.0",
