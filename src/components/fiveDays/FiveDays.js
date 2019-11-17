@@ -19,15 +19,17 @@ const useStyles = makeStyles({
     paddingLeft: '1em'
   },
   DailyReportTemperature: {
-    fontSize: '1.5em',
+    fontSize: '2em',
     padding: '10px',
-    paddingLeft: '0'
+    paddingLeft: '0',
+    width: '20%'
   },
   DailyReportContition: {
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
-    width: '34%',
+    width: '35%',
+    paddingRight: '0.3em',
     alignItems: 'flex-end'
   },
   DailyReportContitionDescription: {
@@ -43,7 +45,7 @@ const useStyles = makeStyles({
 export default function FiveDays() {
   const APIKEY = '02e8d71b0387ff5174b1913ab68d9663'
   const location = 'London,UK'
-  const connectionString = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric&cnt=5`
+  const connectionString = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&APPID=${APIKEY}&units=metric&cnt=40`
   const classes = useStyles();
 
   const [days, setDays] = useState([])
@@ -58,33 +60,7 @@ export default function FiveDays() {
 
   console.log(days)
 
-
-  // get the current date
-  var day;
-  switch (new Date().getDay()) {
-    case 0:
-      day = "Monday";
-      break;
-    case 1:
-      day = "Tuesday";
-      break;
-    case 2:
-      day = "Wednesday";
-      break;
-    case 3:
-      day = "Thursday";
-      break;
-    case 4:
-      day = "Friday";
-      break;
-    case 5:
-      day = "Saturday";
-      break;
-    case  6:
-      day = "Sunday";
-      break;
-    default: return 0  
-  }
+    
 
   return (
     <div>
@@ -92,7 +68,9 @@ export default function FiveDays() {
         days.map((a, i) => (
           <div className={classes.mainDailyReport} key={i}>
             <div className={classes.DailyReportDay}>
-              <span>{day.substring(0, 3).toUpperCase()}</span>
+              {
+                a.dt_txt
+              }
             </div>
             <div className={classes.DailyReportTemperature}>
               <span>
