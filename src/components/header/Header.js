@@ -54,7 +54,7 @@ export default function Header() {
       .catch(err => console.log(err))
   },[])
 
-  console.log(today)
+  // console.log(today)
 
   return (
     <div className={classes.mainHeader}>
