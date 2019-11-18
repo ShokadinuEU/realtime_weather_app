@@ -43,9 +43,10 @@ const useStyles = makeStyles(theme => ({
 export default function LinearDeterminate() {
   const classes = useStyles();
   const progressValue = 57
+
   return (
     <div className={classes.rootHeader}>
-      <p>Reloading in <span>{progressValue}</span>s</p>
+      <p>Reloading in <span>{27}</span>s</p>
       <BorderLinearProgress
         className={classes.progressHeader}
         variant="determinate"

@@ -52,6 +52,7 @@ export default function Header() {
         setToday(res.data.main.temp)
       })
       .catch(err => console.log(err))
+  // eslint-disable-line
   },[])
 
   // console.log(today)
@@ -64,7 +65,7 @@ export default function Header() {
         </div>
         <div className={classes.headerTime}>
           <span>*** </span>
-          <span>{currentTime} GTM</span>
+          <span>{currentTime} GTM </span>
           <span> ***</span>
         </div>
         <div className={classes.headerCurrentWeather}>

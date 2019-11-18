@@ -58,7 +58,7 @@ export default function FiveDays() {
       .catch(err => console.log(err))
   },[])
 
-  // console.log(days)
+  console.log(days)
 
     
 
