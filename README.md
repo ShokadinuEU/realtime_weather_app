@@ -15,7 +15,7 @@
     + To fetch the data I've use axios library
 
 
-  #### Now what I would change / correct if I invest more time on it.
+  #### Now, what I would change / correct if I had to invest more time on it.
 
  + First, I would work more on functionality to meet the main requirement of the task. Things like the progress bar to dynamic refresh / fetch the new data from the server at the time mention, and aswell as dealing with showing the the days as it was on the design.
 
