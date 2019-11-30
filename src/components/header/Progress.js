@@ -45,19 +45,8 @@ export default function LinearDeterminate() {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(true);
 
-  function toggle() {
-    setIsActive(!isActive);
-  }
-
-  function reset() {
-    setSeconds(0);
-  }
-
   useEffect(() => {
     let interval = null;
-    // console.log(interval)
-    console.log(seconds)
-    console.log(isActive)
     if (seconds === 101) {
       setSeconds(0)
     }
