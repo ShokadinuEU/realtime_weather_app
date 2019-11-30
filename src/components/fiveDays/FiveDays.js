@@ -56,11 +56,11 @@ export default function FiveDays() {
         setDays(res.data.list)
       })
       .catch(err => console.log(err))
-  },[])
+  }, [])
 
-  console.log(days)
+  // console.log(days)
 
-    
+
 
   return (
     <div>
@@ -85,7 +85,7 @@ export default function FiveDays() {
             </div>
           </div>
         ))
-      } 
+      }
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { lighten, makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -42,16 +42,48 @@ const useStyles = makeStyles(theme => ({
 
 export default function LinearDeterminate() {
   const classes = useStyles();
-  const progressValue = 57
+  const [seconds, setSeconds] = useState(0);
+  const [isActive, setIsActive] = useState(true);
+
+  function toggle() {
+    setIsActive(!isActive);
+  }
+
+  function reset() {
+    setSeconds(0);
+  }
+
+  useEffect(() => {
+    let interval = null;
+    // console.log(interval)
+    console.log(seconds)
+    console.log(isActive)
+    if (seconds === 101) {
+      setSeconds(0)
+    }
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds + 1);
+      }, 1000);
+    } else if (!isActive && seconds !== 0) {
+      clearInterval(interval);
+    } else {
+      setSeconds(0)
+    }
+    return () => clearInterval(interval);
+  }, [isActive, seconds]);
+
+  console.log(seconds)
+
 
   return (
     <div className={classes.rootHeader}>
-      <p>Reloading in <span>{27}</span>s</p>
+      <p>Reloading in <span>{seconds}</span>s</p>
       <BorderLinearProgress
         className={classes.progressHeader}
         variant="determinate"
         color="primary"
-        value={progressValue}
+        value={seconds}
       />
     </div>
   );
